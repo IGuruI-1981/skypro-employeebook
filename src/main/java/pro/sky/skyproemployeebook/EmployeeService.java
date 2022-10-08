@@ -6,10 +6,9 @@ public interface EmployeeService {
 
     String allEmployee();
 
-//    Employee addEmployee(String surname, String name);
+    String addEmployee(String firstName, String lastName);
 
-    void addEmployee(Employee employee);
+    String removeEmployee(String firstName, String lastName);
 
-    void deleteEmployee(String firstName, String lastName);
-
+    String findEmployee(String firstName, String lastName);
 }

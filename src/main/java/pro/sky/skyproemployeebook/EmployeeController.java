@@ -14,10 +14,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-
-
-
- @GetMapping(path = "/hello")
+    @GetMapping(path = "/hello")
     public String hello() {
         return employeeService.hello();
     }
@@ -30,23 +27,19 @@ public class EmployeeController {
     @GetMapping(path = "/add")                                         //добавление сотрудника
     public String addEmployee(@RequestParam("firstName") String firstName,
                               @RequestParam("lastName") String lastName) {
-        Employee employee = new Employee(firstName, lastName);
-        employeeService.addEmployee(employee);
-        return "Employee added" ;
+        return "Employee added" +  employeeService.addEmployee(firstName, lastName);
     }
 
-    @GetMapping(path = "/delete")                                      // удаление сотрудника
-    public String deleteEmployee(@RequestParam("firstName") String firstName,
+    @GetMapping(path = "/remove")                                      // удаление сотрудника
+    public String removeEmployee(@RequestParam("firstName") String firstName,
                                  @RequestParam("lastName") String lastName) {
-     employeeService.deleteEmployee(firstName, lastName);
-
-        return "Employee deleted";
+        return "Employee deleted" + employeeService.removeEmployee(firstName,lastName);
     }
 
-//    @GetMapping(path = "/search")                                         // поиск сотрудника
-//    public String addEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
-//        return employeeService.searchEmployee(firstName, lastName);
-//    }
-
+    @GetMapping(path = "/find")                                      // поиск  сотрудника
+    public String findEmployee(@RequestParam("firstName") String firstName,
+                               @RequestParam("lastName") String lastName) {
+        return "Employee find" + employeeService.findEmployee(firstName,lastName);
+    }
 
 }
