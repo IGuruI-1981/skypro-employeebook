@@ -1,29 +1,15 @@
 package pro.sky.skyproemployeebook;
 
-import java.util.List;
+public interface EmployeeService {
 
-public class EmployeeService  {
-    List<Employee> employees = List.of( new Employee("Иванов", "Виктор"),
-                                        new Employee("Иванова", "Евгения"),
-                                        new Employee("Васильев","Илья"));
+    String hello();
 
-    public String hello() {
-        return "HelloSkyPRO";
-    }
+    String allEmployee();
 
-    public String addEmployee(String firstName, String lastName) {
-        ;
-        return "Добавлен новый сотрудник - " + firstName + " " + lastName;
-    }
+//    Employee addEmployee(String surname, String name);
 
-//    public static void deleteEmployee(String firstName, String lastName) {
-//
-//    }
-//
-//    public static void searchEmployee(String firstName, String lastName) {
-//
-//    }
+    void addEmployee(Employee employee);
+
+    void deleteEmployee(String firstName, String lastName);
 
 }
-
-
