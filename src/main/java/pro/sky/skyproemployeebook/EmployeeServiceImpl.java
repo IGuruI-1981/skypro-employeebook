@@ -1,6 +1,9 @@
 package pro.sky.skyproemployeebook;
 
 import org.springframework.stereotype.Service;
+import pro.sky.skyproemployeebook.exception.EmployeeAlreadyAddedException;
+import pro.sky.skyproemployeebook.exception.EmployeeNotFoundException;
+import pro.sky.skyproemployeebook.exception.EmployeeStorageIsFullException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +26,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = new Employee(firstName, lastName);
         for (Employee employee1 : employees) {
             if (employee1.equals(employee)) {
-                String addEmpl = "Такой сотрудник существует";
-                return addEmpl;
+                throw new EmployeeAlreadyAddedException("Такой сотрудник уже есть ");
             }
         }
+        if (employees.size() == 10) {
+            throw new EmployeeStorageIsFullException("Массив переполнен");
+        }else {
         employees.add(employee);
         String addEmpl = employee.toString();
         return addEmpl;
+        }
     }
 
     @Override
@@ -42,8 +48,8 @@ public class EmployeeServiceImpl implements EmployeeService {
                 return removeEmpl;
             }
         }
-        String removeEmpl = "Такой сотрудник в базе отсутствует";
-        return removeEmpl;
+        throw new EmployeeNotFoundException("Сотрудник не найден") ;
+
     }
 
     @Override
@@ -55,8 +61,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 return findEmpl;
             }
         }
-        String findEmpl = "Такого сотрудника нет";
-        return findEmpl;
+        throw new EmployeeNotFoundException("Сотрудник не найден") ;
     }
 }
 
