@@ -35,6 +35,9 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Сотрудник: ФИО - " + firstName + " " + lastName;
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }
